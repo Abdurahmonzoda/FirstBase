@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "HjP7WjWFLvGcEasH83dupj8CYdO0NyCABh6vL0ZtpQ9Ajfr0Gaih+3+MAlfxTeGlld0TIPsfOxUr6tByZbzP5g==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ASafa\\OneDrive\\Desktop\\SoftClub\\Softclub\\App\\App.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ASafa\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
+    "C:\\Users\\ASafa\\.nuget\\packages\\npgsql\\6.0.6\\npgsql.6.0.6.nupkg.sha512",
+    "C:\\Users\\ASafa\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
