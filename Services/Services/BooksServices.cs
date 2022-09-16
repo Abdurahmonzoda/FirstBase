@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Domain.Dtos;
 using Domain.Emtities;
 using Npgsql;
 using System;
@@ -53,6 +54,15 @@ namespace Services.Services
             {
                 var sql = $"SELECT * FROM Books";
                 var list = connection.Query<Books>(sql).ToList();
+                return list;
+            }
+        }
+        public List<BookDto> GetBooksDto()
+        {
+            using (NpgsqlConnection connection = new NpgsqlConnection(_connectionString))
+            {
+                var sql = $"SELECT b.title as Title, b.id as Id, a.name as AuthorName FROM Books as b JOIN Authors as a ON b.id = a.id;";
+                var list = connection.Query<BookDto>(sql).ToList();
                 return list;
             }
         }

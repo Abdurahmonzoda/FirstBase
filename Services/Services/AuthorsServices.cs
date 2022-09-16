@@ -22,7 +22,7 @@ namespace Services.Services
             using (NpgsqlConnection connection = new NpgsqlConnection(_connectionString))
             {
                 connection.Open();
-                string sql = $"INSERT INTO Authors (name, surname, id) VALUES ('{author.Name}', '{author.Surname}', '{author.Id}')";
+                string sql = $"INSERT INTO Authors (name, surname) VALUES ('{author.Name}', '{author.Surname}')";
                 var response = connection.Execute(sql);
 
                 return response;
@@ -33,7 +33,7 @@ namespace Services.Services
         {
             using (NpgsqlConnection connection = new NpgsqlConnection(_connectionString))
             {
-                string sql = $"UPDATE  Authors SET name = '{author.Name}', surname = '{author.Surname}', id = '{author.Id}' WHERE id = '{author.Id}'";
+                string sql = $"UPDATE  Authors SET name = '{author.Name}', surname = '{author.Surname}' WHERE id = {author.Id}";
                 var response = connection.Execute(sql);
                 return response;
             }

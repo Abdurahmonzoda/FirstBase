@@ -1,4 +1,5 @@
-﻿using Domain.Emtities;
+﻿using Domain.Dtos;
+using Domain.Emtities;
 using Microsoft.AspNetCore.Mvc;
 using Services.Services;
 
@@ -16,6 +17,12 @@ public class BooksController
     public List<Books> GetBooks()
     {
         return _contactService.GetBooks();
+    }
+
+    [HttpGet("bookwithauthor")]
+    public List<BookDto> GetBookWithAuthor()
+    {
+        return _contactService.GetBooksDto();
     }
     [HttpPost]
     public int AddBooks(Books book)
