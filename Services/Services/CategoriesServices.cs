@@ -16,44 +16,44 @@ namespace Services.Services
         {
             _connectionString = "Server = 127.0.0.1; Port = 5433; Database = School; User Id = postgres; Password = 45sD67ghone;";
         }
-        public int AddCategories(Categories categorie)
+        public async Task<int> AddCategories(Categories categorie)
         {
             // Add contact to database
             using (NpgsqlConnection connection = new NpgsqlConnection(_connectionString))
             {
                 connection.Open();
                 string sql = $"INSERT INTO Categories (name, id) VALUES ('{categorie.Name}', '{categorie.Id}')";
-                var response = connection.Execute(sql);
+                var response = await connection.ExecuteAsync(sql);
 
                 return response;
             }
 
         }
-        public int UpdateCategories(Categories categorie)
+        public async Task<int> UpdateCategories(Categories categorie)
         {
             using (NpgsqlConnection connection = new NpgsqlConnection(_connectionString))
             {
                 string sql = $"UPDATE  Categories SET name = '{categorie.Name}', id = '{categorie.Id}' WHERE id = '{categorie.Id}'";
-                var response = connection.Execute(sql);
+                var response = await connection.ExecuteAsync(sql);
                 return response;
             }
         }
-        public int DeleteCategories(int id)
+        public async Task<int> DeleteCategories(int id)
         {
             using (NpgsqlConnection connection = new NpgsqlConnection(_connectionString))
             {
                 string sql = $"DELETE FROM Categories WHERE id = '{id}'";
-                var response = connection.Execute(sql);
+                var response = await connection.ExecuteAsync(sql);
                 return response;
             }
         }
-        public List<Categories> GetCategories()
+        public async  Task<List<Categories>> GetCategories()
         {
             using (NpgsqlConnection connection = new NpgsqlConnection(_connectionString))
             {
                 var sql = $"SELECT * FROM Categories";
-                var list = connection.Query<Categories>(sql).ToList();
-                return list;
+                var list = await connection.QueryAsync<Categories>(sql);
+                return list.ToList();
             }
         }
     }

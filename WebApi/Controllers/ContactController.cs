@@ -12,24 +12,24 @@ namespace WebApi.Controllers;
             _contactService = new ContactServices();
         }
     [HttpGet]
-    public List<Contact> GetContact()
+    public async Task < List<Contact>> GetContact()
     {
-        return _contactService.GetContact();
+        return await _contactService.GetContact();
     }
         [HttpPost]
-        public int AddContact(Contact contact)
+        public async Task<int> AddContact(Contact contact)
         {
-            return _contactService.AddContact(contact);
+            return await _contactService.AddContact(contact);
         }
     [HttpPut]
-    public int UpdateContact(Contact contact)
+    public async Task<int> UpdateContact(Contact contact)
     {
-        return _contactService.UpdateContact(contact);
+        return await _contactService.UpdateContact(contact);
     }
     [HttpDelete]
-    public int DeleteContact(int id)
+    public async Task<int> DeleteContact(int id)
     {
-        return _contactService.DeleteContact(id);
+        return await _contactService.DeleteContact(id);
     }
    }
 

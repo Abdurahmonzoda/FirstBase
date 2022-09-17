@@ -13,23 +13,23 @@ namespace WebApi.Controllers;
             _contactService = new AuthorsServices();
         }
         [HttpGet]
-        public List<Authors> GetAuthors()
+        public async Task< List<Authors>> GetAuthors()
         {
-            return _contactService.GetAuthors();
+            return await _contactService.GetAuthors();
         }
         [HttpPost]
-        public int AddAuthors(Authors author)
+        public async Task<int> AddAuthors(Authors author)
         {
-            return _contactService.AddAuthors(author);
+            return await _contactService.AddAuthors(author);
         }
         [HttpPut]
-        public int UpdateAuthors(Authors author)
+        public async Task<int> UpdateAuthors(Authors author)
         {
-            return _contactService.UpdateAuthors(author);
+            return await _contactService.UpdateAuthors(author);
         }
         [HttpDelete]
-        public int DeleteAuthors(int id)
+        public async Task<int> DeleteAuthors(int id)
         {
-            return _contactService.DeleteAuthors(id);
+            return await _contactService.DeleteAuthors(id);
         }
     }

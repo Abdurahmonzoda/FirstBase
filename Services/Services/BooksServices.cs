@@ -17,53 +17,53 @@ namespace Services.Services
         {
             _connectionString = "Server = 127.0.0.1; Port = 5433; Database = School; User Id = postgres; Password = 45sD67ghone;";
         }
-        public int AddBooks(Books book)
+        public async Task<int> AddBooks(Books book)
         {
             // Add contact to database
             using (NpgsqlConnection connection = new NpgsqlConnection(_connectionString))
             {
                 connection.Open();
                 string sql = $"INSERT INTO Books (title, authorid, id) VALUES ('{book.Title}', '{book.AuthorId}', '{book.Id}')";
-                var response = connection.Execute(sql);
+                var response = await connection.ExecuteAsync(sql);
 
                 return response;
             }
 
         }
-        public int UpdateBooks(Books book)
+        public async Task<int> UpdateBooks(Books book)
         {
             using (NpgsqlConnection connection = new NpgsqlConnection(_connectionString))
             {
                 string sql = $"UPDATE  Books SET title = '{book.Title}', authorid = '{book.AuthorId}', id = '{book.Id}' WHERE id = '{book.Id}'";
-                var response = connection.Execute(sql);
+                var response = await connection.ExecuteAsync(sql);
                 return response;
             }
         }
-        public int DeleteBooks(int id)
+        public async Task<int> DeleteBooks(int id)
         {
             using (NpgsqlConnection connection = new NpgsqlConnection(_connectionString))
             {
                 string sql = $"DELETE FROM Books WHERE id = '{id}'";
-                var response = connection.Execute(sql);
+                var response = await connection.ExecuteAsync(sql);
                 return response;
             }
         }
-        public List<Books> GetBooks()
+        public async Task<List<Books>> GetBooks()
         {
             using (NpgsqlConnection connection = new NpgsqlConnection(_connectionString))
             {
                 var sql = $"SELECT * FROM Books";
-                var list = connection.Query<Books>(sql).ToList();
-                return list;
+                var list = await connection.QueryAsync<Books>(sql);
+                return list.ToList();
             }
         }
-        public List<BookDto> GetBooksDto()
+        public async Task <List<BookDto>> GetBooksDto()
         {
             using (NpgsqlConnection connection = new NpgsqlConnection(_connectionString))
             {
                 var sql = $"SELECT b.title as Title, b.id as Id, a.name as AuthorName FROM Books as b JOIN Authors as a ON b.id = a.id;";
-                var list = connection.Query<BookDto>(sql).ToList();
-                return list;
+                var list = await connection.QueryAsync<BookDto>(sql);
+                return list.ToList();
             }
         }
     }

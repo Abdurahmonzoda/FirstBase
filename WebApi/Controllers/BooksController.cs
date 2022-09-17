@@ -14,29 +14,29 @@ public class BooksController
         _contactService = new BooksServices();
     }
     [HttpGet]
-    public List<Books> GetBooks()
+    public async Task<List<Books>> GetBooks()
     {
-        return _contactService.GetBooks();
+        return await _contactService.GetBooks();
     }
 
     [HttpGet("bookwithauthor")]
-    public List<BookDto> GetBookWithAuthor()
+    public async Task<List<BookDto>> GetBookWithAuthor()
     {
-        return _contactService.GetBooksDto();
+        return await _contactService.GetBooksDto();
     }
     [HttpPost]
-    public int AddBooks(Books book)
+    public async Task <int> AddBooks(Books book)
     {
-        return _contactService.AddBooks(book);
+        return await _contactService.AddBooks(book);
     }
     [HttpPut]
-    public int UpdateBooks(Books book)
+    public async Task<int> UpdateBooks(Books book)
     {
-        return _contactService.UpdateBooks(book);
+        return await _contactService.UpdateBooks(book);
     }
     [HttpDelete]
-    public int DeleteBooks(int id)
+    public async Task<int> DeleteBooks(int id)
     {
-        return _contactService.DeleteBooks(id);
+        return await _contactService.DeleteBooks(id);
     }
 }

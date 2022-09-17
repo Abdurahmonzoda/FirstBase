@@ -13,23 +13,23 @@ public class CategoriesController
         _contactService = new CategoriesServices();
     }
     [HttpGet]
-    public List<Categories> GetCategories()
+    public async Task< List<Categories>> GetCategories()
     {
-        return _contactService.GetCategories();
+        return await _contactService.GetCategories();
     }
     [HttpPost]
-    public int AddCategories(Categories categorie)
+    public async Task<int> AddCategories(Categories categorie)
     {
-        return _contactService.AddCategories(categorie);
+        return await _contactService.AddCategories(categorie);
     }
     [HttpPut]
-    public int UpdateCategories(Categories categorie)
+    public async Task<int> UpdateCategories(Categories categorie)
     {
-        return _contactService.UpdateCategories(categorie);
+        return await _contactService.UpdateCategories(categorie);
     }
     [HttpDelete]
-    public int DeleteCategories(int id)
+    public async Task<int> DeleteCategories(int id)
     {
-        return _contactService.DeleteCategories(id);
+        return await _contactService.DeleteCategories(id);
     }
 }

@@ -13,23 +13,24 @@ public class StudentsController
         _contactService = new StudentsServices();
     }
     [HttpGet]
-    public List<Students> GetStudents()
+    public async Task <List<Students>> GetStudents()
     {
-        return _contactService.GetStudents();
+        return await _contactService.GetStudents();
     }
     [HttpPost]
-    public int AddStudents(Students student)
+    public async Task<int> AddStudents(Students student)
     {
-        return _contactService.AddStudents(student);
+        return await _contactService.AddStudents(student);
     }
     [HttpPut]
-    public int UpdateStudents(Students student)
+    public async Task<int> UpdateStudents(Students student)
     {
-        return _contactService.UpdateStudents(student);
+        return await _contactService.UpdateStudents(student);
     }
     [HttpDelete]
-    public int DeleteStudents(int id)
+    public async Task<int> DeleteStudents(int id)
     {
-        return _contactService.DeleteStudents(id);
+        return await _contactService.DeleteStudents(id);
+
     }
 }

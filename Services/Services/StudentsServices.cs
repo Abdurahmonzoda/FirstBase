@@ -16,44 +16,44 @@ namespace Services.Services
         {
             _connectionString = "Server = 127.0.0.1; Port = 5433; Database = School; User Id = postgres; Password = 45sD67ghone;";
         }
-        public int AddStudents(Students student)
+        public async Task<int> AddStudents(Students student)
         {
             // Add contact to database
             using (NpgsqlConnection connection = new NpgsqlConnection(_connectionString))
             {
                 connection.Open();
                 string sql = $"INSERT INTO Students (firstname, lastname, fathername,birthdate,id) VALUES ('{student.Firtname}', '{student.Lastname}', '{student.Fathername}', '{student.BirthDate}', '{student.Id}' )";
-                var response = connection.Execute(sql);
+                var response = await connection.ExecuteAsync(sql);
 
                 return response;
             }
 
         }
-        public int UpdateStudents(Students student)
+        public async Task<int> UpdateStudents(Students student)
         {
             using (NpgsqlConnection connection = new NpgsqlConnection(_connectionString))
             {
                 string sql = $"UPDATE  Students SET firstname = '{student.Firtname}', lastname = '{student.Lastname}', fathername = '{student.Fathername}', birthdate = '{student.BirthDate}', id = '{student.Id}' WHERE id = '{student.Id}'";
-                var response = connection.Execute(sql);
+                var response = await connection.ExecuteAsync(sql);
                 return response;
             }
         }
-        public int DeleteStudents(int id)
+        public async Task<int> DeleteStudents(int id)
         {
             using (NpgsqlConnection connection = new NpgsqlConnection(_connectionString))
             {
                 string sql = $"DELETE FROM Students WHERE id = '{id}'";
-                var response = connection.Execute(sql);
+                var response = await connection.ExecuteAsync(sql);
                 return response;
             }
         }
-        public List<Students> GetStudents()
+        public async Task<List<Students>> GetStudents()
         {
             using (NpgsqlConnection connection = new NpgsqlConnection(_connectionString))
             {
                 var sql = $"SELECT * FROM Students";
-                var list = connection.Query<Students>(sql).ToList();
-                return list;
+                var list = await connection.QueryAsync<Students>(sql);
+                return list.ToList();
             }
         }
     }
